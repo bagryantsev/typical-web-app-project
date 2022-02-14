@@ -1,2 +1,2 @@
-# typical-web-app-project
-The web app inspired by exercises from Baptiste Pesquet's "The JS Way" book
+# Save the link
+This is an project which I'm working for while trying to learn web development
