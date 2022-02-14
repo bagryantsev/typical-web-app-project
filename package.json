@@ -1,0 +1,16 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "Simple web app that let user save link to a web resource",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon -e * app.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
