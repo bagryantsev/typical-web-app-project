@@ -4,7 +4,7 @@
 
 const content = document.getElementById("content");
 const submitButton = document.getElementById("submitButton");
-const url = "https://typical-web-app.herokuapp.com/";
+const url = "https://typical-web-app.herokuapp.com/links";
 
 getLinks(url);
 submitButton.addEventListener("click", makeSubmit, { once: true });
@@ -48,6 +48,7 @@ function performPostRequest(event) {
   fetch(url, {
     method: "POST",
     headers: {
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
@@ -64,10 +65,9 @@ function createSubmitButton() {
 }
 
 function getLinks(url) {
-  fetch(url)
+  fetch(url, )
     .then((response) => response.json())
     .then((links) => {
-      console.log(links);
       content.append(...links.map((link) => fillContent(link)));
     });
 }
@@ -111,10 +111,4 @@ function makeTitleElement(element) {
   title.href = element.url;
   title.appendChild(document.createTextNode(element.title));
   return title;
-}
-
-function showPostMessage() {
-  const message = document.createElement("div");
-  message.textContent = "A request was sent!";
-  message.classList.add()
 }
