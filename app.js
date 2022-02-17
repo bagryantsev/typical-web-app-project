@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const Link = require("./objects.js");
+const Link = require("./module/objects.js");
 
 const app = express();
 
@@ -17,9 +17,17 @@ app.get("/", (req, res) => {
   res.status(200).sendFile(`${__dirname}/views/index.html`);
 });
 
-app.get("/links", cors(), (req, res) => {
+app.get("/links", (req, res) => {
   res.json(objects);
 });
+
+app.post("/links", (req, res) => {
+  if(req.body) {
+    const {author, title, url } = req.body;
+    objects.push(new Link(author, title, url));
+  }
+  res.status(200).send("OK")
+})
 
 app.listen(process.env.PORT || 5000, (err) => {
   if (err) console.err(err);
