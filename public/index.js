@@ -1,39 +1,34 @@
 /* TODO;
-* Function that replaces submit form by element that indicates succes or failure of post request
-*/
-
+ * Function that replaces submit form by element that indicates succes or failure of post request
+ */
 
 const content = document.getElementById("content");
-const submitButton = document.getElementById("submitButton")
-const url = "http://localhost:5000/links";
-
+const submitButton = document.getElementById("submitButton");
+const url = "https://typical-web-app.herokuapp.com/";
 
 getLinks(url);
-submitButton.addEventListener("click", makeSubmit, {once: true});
-
-
+submitButton.addEventListener("click", makeSubmit, { once: true });
 
 // All necessary functions
 function makeSubmit() {
-    const submitForm = makeSubmitForm();
-    content.insertAdjacentElement("beforebegin", submitForm);
+  const submitForm = makeSubmitForm();
+  content.insertAdjacentElement("beforebegin", submitForm);
 }
 
-
 function makeSubmitForm() {
-    const form = document.createElement("form");
-    form.classList.add("linkForm");
-    form.classList.add("form-inline");
+  const form = document.createElement("form");
+  form.classList.add("linkForm");
+  form.classList.add("form-inline");
 
-    // Create input fields
-    const authorField = createInputElement("author", "Enter author", 20);
-    const titleField = createInputElement("title", "Enter link title", 40);
-    const urlField = createInputElement("url", "Enter link URL", 40);
-    const submissionButton = createSubmitButton();
-    
-    form.append(authorField, titleField, urlField, submissionButton);
-    form.addEventListener("submit", performPostRequest);
-    return form;
+  // Create input fields
+  const authorField = createInputElement("author", "Enter author", 20);
+  const titleField = createInputElement("title", "Enter link title", 40);
+  const urlField = createInputElement("url", "Enter link URL", 40);
+  const submissionButton = createSubmitButton();
+
+  form.append(authorField, titleField, urlField, submissionButton);
+  form.addEventListener("submit", performPostRequest);
+  return form;
 }
 
 function createInputElement(name, placeholder, size) {
@@ -47,16 +42,15 @@ function createInputElement(name, placeholder, size) {
   return input;
 }
 
-
 function performPostRequest(event) {
   // event.preventDefault();
   const formData = Object.fromEntries(new FormData(event.target).entries());
   fetch(url, {
-    "method": "POST",
+    method: "POST",
     headers: {
-      "Content-Type": "application/json"
-  },
-  body: JSON.stringify(formData),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
   })
 }
 
@@ -117,4 +111,10 @@ function makeTitleElement(element) {
   title.href = element.url;
   title.appendChild(document.createTextNode(element.title));
   return title;
+}
+
+function showPostMessage() {
+  const message = document.createElement("div");
+  message.textContent = "A request was sent!";
+  message.classList.add()
 }

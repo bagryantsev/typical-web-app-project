@@ -26,7 +26,7 @@ app.post("/links", (req, res) => {
     const {author, title, url } = req.body;
     objects.push(new Link(author, title, url));
   }
-  res.status(200).send("OK")
+  res.status(200).json({"ok": true})
 })
 
 app.listen(process.env.PORT || 5000, (err) => {
